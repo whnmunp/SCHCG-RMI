@@ -471,8 +471,10 @@ public class frmPrincipal extends javax.swing.JFrame {
             InterfazSCHCG rp = (InterfazSCHCG) registry.lookup("conex");
             DNI=txtDNI.getText();
             //ConsultarPacientes(DNI,0);
-            String query="SELECT p.dni, p.\"ApPaterno\", p.\"ApMaterno\", p.\"Nombres\",hc.\"codHistoria\", hc.\"codCarpeta\",hc.\"histAntigua\"\n" +
-                    "  FROM \"Paciente\" as p inner join \"HistoriaClinica\" hc on hc.id=p.id where p.dni like '"+DNI+"%';";
+//            String query="SELECT p.dni, p.\"ApPaterno\", p.\"ApMaterno\", p.\"Nombres\",hc.\"codHistoria\", hc.\"codCarpeta\",hc.\"histAntigua\"\n" +
+//                    "  FROM \"Paciente\" as p inner join \"HistoriaClinica\" hc on hc.id=p.id where p.dni like '"+DNI+"%';";
+            String query="SELECT p.dni, p.ApPaterno, p.ApMaterno, p.Nombres,hc.codHistoria, hc.codCarpeta,hc.histAntigua " +
+                    "  FROM paciente as p inner join historiaclinica hc on hc.id=p.id where p.dni like '"+DNI+"%'";
             String res;
             res = rp.consultarPorDNI(query);
             JTextArea ta=new JTextArea(30,50);
