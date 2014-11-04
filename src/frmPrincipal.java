@@ -499,7 +499,7 @@ public class frmPrincipal extends javax.swing.JFrame {
             JTextArea ta = new JTextArea(30, 50);
             JScrollPane spa1 = new JScrollPane(ta);
             ta.append(res);
-            JOptionPane.showMessageDialog(null, spa1);
+            JOptionPane.showMessageDialog(this, spa1);
         } catch (RemoteException ex) {
             Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NotBoundException ex) {
