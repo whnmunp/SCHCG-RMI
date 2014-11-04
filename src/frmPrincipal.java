@@ -474,7 +474,6 @@ public class frmPrincipal extends javax.swing.JFrame {
             String res;
             res = rp.consultarPorDNI(query);
             JOptionPane.showMessageDialog(null, res);
-            
         } catch (RemoteException ex) {
             Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NotBoundException ex) {
@@ -637,7 +636,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     
     public void Configuraciones()
     {
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //setExtendedState(JFrame.MAXIMIZED_BOTH);
         jpcontenedor.setBorder(new ImagenMDI());
 //        lbNombre.setText(em.getNombre());
 //        lbApellidos.setText(em.getApellidos());
