@@ -1,4 +1,5 @@
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 /*
@@ -11,7 +12,7 @@ import java.rmi.RemoteException;
  * @author wilson
  * @author nole
  */
-public interface InterfazSCHCG {
+public interface InterfazSCHCG extends Remote{
     public void Conectar(String host, String BD, String User, String Password, 
             String dbms) throws RemoteException;
     public String consultarPorDNI(String query) throws RemoteException;
