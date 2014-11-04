@@ -1,6 +1,6 @@
-
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import javax.swing.JFileChooser;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,8 +12,14 @@ import java.rmi.RemoteException;
  * @author wilson
  * @author nole
  */
-public interface InterfazSCHCG extends Remote{
-    public void Conectar(String host, String BD, String User, String Password, 
+public interface InterfazSCHCG extends Remote {
+
+    public void Conectar(String host, String BD, String User, String Password,
             String dbms) throws RemoteException;
+
     public String consultarPorDNI(String query) throws RemoteException;
+
+    public boolean GenerarBackupMySQL(String path)throws RemoteException;
+    
+    public boolean restoreDB(String path) throws RemoteException;
 }
