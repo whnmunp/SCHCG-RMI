@@ -53,13 +53,13 @@ public class jdServidorBD extends javax.swing.JDialog {
 
         jLabel5.setText("Base de Datos:");
 
-        txtNombreBD.setText("BDSCHCG");
+        txtNombreBD.setText("bdschcg2");
 
         jLabel6.setText("Usuario:");
 
         jLabel7.setText("Pass ...:");
 
-        txtDBMS.setText("postgresql");
+        txtDBMS.setText("mysql");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);

@@ -151,7 +151,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtNombreBD">
           <Properties>
-            <Property name="text" type="java.lang.String" value="BDSCHCG"/>
+            <Property name="text" type="java.lang.String" value="bdschcg2"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -170,7 +170,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtDBMS">
           <Properties>
-            <Property name="text" type="java.lang.String" value="postgresql"/>
+            <Property name="text" type="java.lang.String" value="mysql"/>
           </Properties>
         </Component>
       </SubComponents>
