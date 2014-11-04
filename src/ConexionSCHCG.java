@@ -80,10 +80,10 @@ public class ConexionSCHCG extends UnicastRemoteObject implements InterfazSCHCG 
     
    public void Conectar(String host, String BD, String User, String Password, String dbms) throws RemoteException {
    try{
-        if(dbms.equals("postgresql"))
-	Class.forName("org.postgresql.Driver");
-//	if(dbms.equals("mysql"))
-//    	Class.forName  ("com.mysql.jdbc.Driver");
+//        if(dbms.equals("postgresql"))
+//	Class.forName("org.postgresql.Driver");
+	if(dbms.equals("mysql"))
+    	Class.forName  ("com.mysql.jdbc.Driver");
         con = DriverManager.getConnection( "jdbc:"+dbms+"://"+host+"/"+BD+"?user="+User+"&password="+Password);
    }
    catch(Exception e)
