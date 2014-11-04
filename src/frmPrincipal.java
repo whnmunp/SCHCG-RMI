@@ -331,9 +331,11 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jmArchivo.setText("Archivo");
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon-backup.png"))); // NOI18N
         jMenuItem1.setText("Backup BD");
         jmArchivo.add(jMenuItem1);
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon-restore.png"))); // NOI18N
         jMenuItem2.setText("Restaurar BD");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
