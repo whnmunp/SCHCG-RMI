@@ -475,7 +475,7 @@ public class frmPrincipal extends javax.swing.JFrame {
                     "  FROM \"Paciente\" as p inner join \"HistoriaClinica\" hc on hc.id=p.id where p.dni like '"+DNI+"%';";
             String res;
             res = rp.consultarPorDNI(query);
-            JTextArea ta=new JTextArea();
+            JTextArea ta=new JTextArea(30,50);
             JScrollPane spa1=new JScrollPane(ta);
             ta.append(res);
             JOptionPane.showMessageDialog(null,spa1);
