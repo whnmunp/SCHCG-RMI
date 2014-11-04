@@ -549,7 +549,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         ArrayList<Paciente> pacientes = null;
         int i,tam;
         String query = null,query2=null;
-        try {
+        //try {
         tam=Dato.length();
         if(tam==0){
             pt.TablaPacientes1(jtPacientes);//TablaPacientes();
@@ -586,19 +586,20 @@ public class frmPrincipal extends javax.swing.JFrame {
                 break;   
             }
             //pacientes=paciente.ConsultarPacientes(query,0);
-            pacientes=paciente.ConsultarPacientes(query,0);
-            if(pacientes!=null){
-                for(i=0;i<pacientes.size();i++){
-                    paciente=pacientes.get(i);
-                    Object fila[]={paciente.getDNI(),paciente.getApPat().trim()+" "+paciente.getAptMat().trim()+" "+paciente.getNombre().trim(),paciente.getCf().getCarpetaFamiliar(),paciente.getHc().getHc(),paciente.getHc().getCf()};
-                    ((DefaultTableModel)jtPacientes.getModel()).addRow(fila);
-                }
-            }
-        }
-        } catch (SQLException ex) {
-            Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//            pacientes=paciente.ConsultarPacientes(query,0);
+//            if(pacientes!=null){
+//                for(i=0;i<pacientes.size();i++){
+//                    paciente=pacientes.get(i);
+//                    Object fila[]={paciente.getDNI(),paciente.getApPat().trim()+" "+paciente.getAptMat().trim()+" "+paciente.getNombre().trim(),paciente.getCf().getCarpetaFamiliar(),paciente.getHc().getHc(),paciente.getHc().getCf()};
+//                    ((DefaultTableModel)jtPacientes.getModel()).addRow(fila);
+//                }
+//            }
+//        }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
+    }     
 
     /**
      * Consulta a la base de datos y llena la tabla con
@@ -607,36 +608,35 @@ public class frmPrincipal extends javax.swing.JFrame {
      * @param apmat
      * @param nombre 
      */
-    public void ConsultarPacientes(String appat,String apmat,String nombre){
-        Paciente paciente;
-        ArrayList<Paciente> pacientes = null;
-        int i;
-        try {
-        limpiarSiApeNombres();
-        if(appat.isEmpty()&& apmat.isEmpty() && nombre.isEmpty())
-            pt.TablaPacientes1(jtPacientes);//TablaPacientes();
-        else
-        {
-            pt.TablaPacientes1(jtPacientes);//TablaPacientes();
-            paciente=new Paciente();
-            pacientes=paciente.ConsultarPacientes(appat,apmat,nombre,0);
-            if(pacientes!=null){
-                for(i=0;i<pacientes.size();i++){
-                    paciente=pacientes.get(i);
-                    Object fila[]={paciente.getDNI(),paciente.getApPat().trim()+" "+paciente.getAptMat().trim()+" "+paciente.getNombre().trim(),paciente.getCf().getCarpetaFamiliar(),paciente.getHc().getHc(),paciente.getHc().getCf()};
-                    ((DefaultTableModel)jtPacientes.getModel()).addRow(fila);
-                }
-            }
-        }
-        } catch (SQLException ex) {
-            Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    public void ConsultarPacientes(String appat,String apmat,String nombre){
+//        Paciente paciente;
+//        ArrayList<Paciente> pacientes = null;
+//        int i;
+//        try {
+//        limpiarSiApeNombres();
+//        if(appat.isEmpty()&& apmat.isEmpty() && nombre.isEmpty())
+//            pt.TablaPacientes1(jtPacientes);//TablaPacientes();
+//        else
+//        {
+//            pt.TablaPacientes1(jtPacientes);//TablaPacientes();
+//            paciente=new Paciente();
+//            pacientes=paciente.ConsultarPacientes(appat,apmat,nombre,0);
+//            if(pacientes!=null){
+//                for(i=0;i<pacientes.size();i++){
+//                    paciente=pacientes.get(i);
+//                    Object fila[]={paciente.getDNI(),paciente.getApPat().trim()+" "+paciente.getAptMat().trim()+" "+paciente.getNombre().trim(),paciente.getCf().getCarpetaFamiliar(),paciente.getHc().getHc(),paciente.getHc().getCf()};
+//                    ((DefaultTableModel)jtPacientes.getModel()).addRow(fila);
+//                }
+//            }
+//        }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
     
-    /**
-     * Ayuda con inicializaciones importantes
-     */
-    public void Configuraciones(){
+    
+    public void Configuraciones()
+    {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         jpcontenedor.setBorder(new ImagenMDI());
 //        lbNombre.setText(em.getNombre());

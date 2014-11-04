@@ -231,7 +231,7 @@ public class HistoriaClinica{
      * @return la letra de la mayor historia
      * @throws SQLException 
      */
-    public char maxHistoria(String codCarpeta) throws SQLException{
+    /*public char maxHistoria(String codCarpeta) throws SQLException{
         String query,codHistoria = null;
         char Sgteletra='C';
         Connection conn;
@@ -253,7 +253,7 @@ public class HistoriaClinica{
         } 
         
         return Sgteletra;
-    }
+    }*/
     
     /**
      * Obtiene la cantidad de historia clinica que se
@@ -261,7 +261,7 @@ public class HistoriaClinica{
      * @return int
      * @throws SQLException 
      */
-     public int CantidadHistorias() throws SQLException{
+     /*public int CantidadHistorias() throws SQLException{
         int cantidad = 0;
         String query;
         Connection conn;
@@ -277,7 +277,7 @@ public class HistoriaClinica{
             cantidad=rs.getInt(1);
         }
         return cantidad;
-    }
+    }*/
      
     /**
      * Eliminar la Historia Clínica

@@ -44,7 +44,7 @@ public class jdActualizarEliminarCarpeta extends javax.swing.JDialog {
     /**
      * Obejto de la Clase Conexion
      */
-    Conexion con;
+    //Conexion con;
     /**
      * Obtiene la conexion
      */

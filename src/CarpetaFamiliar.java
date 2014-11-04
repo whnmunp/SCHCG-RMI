@@ -126,7 +126,7 @@ public class CarpetaFamiliar {
      * @return un objeto de la clase <code>CarpetaFamiliar</code>
      * @throws SQLException 
      */
-    public CarpetaFamiliar ConsultarCarpetaFamiliar(String CodCarpeta) throws SQLException{
+    /*public CarpetaFamiliar ConsultarCarpetaFamiliar(String CodCarpeta) throws SQLException{
         Paciente paciente = null;
         ArrayList<HistoriaClinica> historiasClinicas;
         HistoriaClinica historiaClinica;
@@ -134,15 +134,15 @@ public class CarpetaFamiliar {
         Parentesco parentesco;
         String query;
         Connection conn;
-        Conexion con;
+        //Conexion con;
         Statement st;
         ResultSet rs;
         query="SELECT  p.id,p.dni,p.\"ApPaterno\", p.\"ApMaterno\", p.\"Nombres\",p.\"FechNac\",p.\"sexo\",p.\"direccion\",p.\"codCarpeta\",pr.\"descripcion\",hc.\"codHistoria\" FROM  \"Paciente\" as p \n" +
 "inner join \"HistoriaClinica\" as hc on hc.id=p.id inner join \"Parentesco\" as pr on pr.\"codParentesco\"=p.\"codParentesco\" where hc.\"codCarpeta\"='"+CodCarpeta+"'";
-        con=new Conexion();
-        conn=con.getConnection();
-        st=conn.createStatement();
-        rs=st.executeQuery(query);
+//        con=new Conexion();
+//        conn=con.getConnection();
+        //st=conn.createStatement();
+        //rs=st.executeQuery(query);
         historiasClinicas=new ArrayList<HistoriaClinica>();
         while(rs.next()){
             parentesco=new Parentesco(rs.getString("descripcion"));
@@ -160,7 +160,7 @@ public class CarpetaFamiliar {
         }
         carpetafamiliar=new CarpetaFamiliar(CodCarpeta, historiasClinicas);
         return carpetafamiliar;
-    }
+    }*/
 	
     /**
      * Registra en la Base de datos el numero de la
@@ -182,7 +182,7 @@ public class CarpetaFamiliar {
      * @return int cantidad de carpetas
      * @throws SQLException 
      */
-    public int CantidadCarpetas() throws SQLException{
+    /*public int CantidadCarpetas() throws SQLException{
         int cantidad = 0;
         String query;
         Connection conn;
@@ -198,7 +198,7 @@ public class CarpetaFamiliar {
             cantidad=rs.getInt(1);
         }
         return cantidad;
-    }
+    }*/
    
     /**
      * Obtiene el mayor numero de carpeta que este registrado
@@ -206,7 +206,7 @@ public class CarpetaFamiliar {
      * @return int mayor numero de carpeta
      * @throws SQLException 
      */
-    public int MayorCarpeta() throws SQLException{
+    /*public int MayorCarpeta() throws SQLException{
         int cantidad=0;
         int i=1;
         String query;
@@ -230,7 +230,7 @@ public class CarpetaFamiliar {
             i++;
         }
         return cantidad;
-    }
+    }*/
     
     /**
      * Actuliza el número de Carpeta Familiar

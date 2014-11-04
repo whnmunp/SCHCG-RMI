@@ -450,7 +450,7 @@ public class Paciente {
      * devuelve la query
      * @throws SQLException 
      */
-    public ArrayList<Paciente> ConsultarPacientes(String query,int DeDonde) throws SQLException{
+    /*public ArrayList<Paciente> ConsultarPacientes(String query,int DeDonde) throws SQLException{
         ArrayList<Paciente> pacientes;
         Paciente paciente = null;
         HistoriaClinica historiaClinica;
@@ -482,7 +482,7 @@ public class Paciente {
         }
         return pacientes;
         
-    }
+    }*/
         
     /**
      * Se dirige  a la base de datos a consultar si hay pacientes
@@ -495,7 +495,7 @@ public class Paciente {
      * respuestas
      * @throws SQLException 
      */
-    public ArrayList<Paciente> ConsultarPacientes(String appat,String apmat,String nombre,int DeDonde) throws SQLException{
+    /*public ArrayList<Paciente> ConsultarPacientes(String appat,String apmat,String nombre,int DeDonde) throws SQLException{
         ArrayList<Paciente> pacientes = null;
         Paciente paciente = null;
         HistoriaClinica historiaClinica;
@@ -538,7 +538,7 @@ public class Paciente {
             pacientes.add(paciente);
         }
         return pacientes;
-    }
+    }*/
     
     /**
      * Registra los pacientes en la base de datos
@@ -569,27 +569,27 @@ public class Paciente {
      * Registra los datos de un paciente en la base de datos
      * @throws SQLException 
      */
-    public void registrarPaciente() throws SQLException{
-        String query ;
-        Connection conn;
-        Conexion con;
-        Statement st;
-        ResultSet rs;
-        con=new Conexion();
-        conn=con.getConnection();
-        st=conn.createStatement(); 
-        if(isJefeFamilia()){
-            query="select registrarpaciente('"+getDNI()+"','"+getApPat()+"','"+getAptMat()+"','"+getNombre()+"','"+getFecha()+"','"+getSexo()+"','"+getDireccion()+"','"+getCf().getCarpetaFamiliar()+"','"+getPa().getDenominacion()+"')";
-        }
-        else
-        {
-            query="select registrarpacientesinjefe('"+getDNI()+"','"+getApPat()+"','"+getAptMat()+"','"+getNombre()+"','"+getFecha()+"','"+getSexo()+"','"+getDireccion()+"','"+getPa().getDenominacion()+"')";
-        }
-        rs=st.executeQuery(query);
-        while(rs.next()){
-            rs.getString(1);
-        }
-    }
+//    public void registrarPaciente() throws SQLException{
+//        String query ;
+//        Connection conn;
+//        Conexion con;
+//        Statement st;
+//        ResultSet rs;
+//        con=new Conexion();
+//        conn=con.getConnection();
+//        st=conn.createStatement(); 
+//        if(isJefeFamilia()){
+//            query="select registrarpaciente('"+getDNI()+"','"+getApPat()+"','"+getAptMat()+"','"+getNombre()+"','"+getFecha()+"','"+getSexo()+"','"+getDireccion()+"','"+getCf().getCarpetaFamiliar()+"','"+getPa().getDenominacion()+"')";
+//        }
+//        else
+//        {
+//            query="select registrarpacientesinjefe('"+getDNI()+"','"+getApPat()+"','"+getAptMat()+"','"+getNombre()+"','"+getFecha()+"','"+getSexo()+"','"+getDireccion()+"','"+getPa().getDenominacion()+"')";
+//        }
+//        rs=st.executeQuery(query);
+//        while(rs.next()){
+//            rs.getString(1);
+//        }
+//    }
     
     /**
      * Actualiza todos los datos del paciente que se haigan modificado
@@ -621,7 +621,7 @@ public class Paciente {
      * @return int
      * @throws SQLException 
      */
-    public int isJefe(String codCarpeta) throws SQLException{
+    /*public int isJefe(String codCarpeta) throws SQLException{
         String query = null;
         Connection conn;
         Conexion con;
@@ -635,7 +635,7 @@ public class Paciente {
         while(rs.next())
             return rs.getInt(1);
         return 0;
-    }
+    }*/
     
     /**
      * Obtiene la cantidad de pacientes registrados
@@ -643,7 +643,7 @@ public class Paciente {
      * @return int
      * @throws SQLException 
      */
-     public int CantidadPacientes() throws SQLException{
+     /*public int CantidadPacientes() throws SQLException{
         int cantidad = 0;
         String query;
         Connection conn;
@@ -659,7 +659,7 @@ public class Paciente {
             cantidad=rs.getInt(1);
         }
         return cantidad;
-    }
+    }*/
                  
     /**
      * Actualizar el Paciente que es Jefe de Carpeta Familiar

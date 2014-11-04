@@ -89,7 +89,7 @@ public class Parentesco {
      * @return devuelve un ArrayList con los parentescos
      * @throws SQLException 
      */
-    public ArrayList<Parentesco> ConsultarParentesco() throws SQLException{
+    /*public ArrayList<Parentesco> ConsultarParentesco() throws SQLException{
         String query;
         Parentesco  parentesco;
         ArrayList<Parentesco> parentescos;
@@ -108,7 +108,7 @@ public class Parentesco {
             parentescos.add(parentesco);
         }
         return parentescos;
-    }
+    }*/
     
     /**
      * Consulta todos los parentesco que existan en una
@@ -117,7 +117,7 @@ public class Parentesco {
      * @return ArrayList con todos los parentesco
      * @throws SQLException 
      */
-    public ArrayList<Parentesco> ConsultarParentesco(String codCarpeta) throws SQLException{
+    /*public ArrayList<Parentesco> ConsultarParentesco(String codCarpeta) throws SQLException{
         String query;
         Parentesco  parentesco;
         ArrayList<Parentesco> parentescos;
@@ -136,5 +136,5 @@ public class Parentesco {
             parentescos.add(parentesco);
         }
         return parentescos;
-    }
+    }*/
 }

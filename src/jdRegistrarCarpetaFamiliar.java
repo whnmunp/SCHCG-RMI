@@ -52,7 +52,7 @@ public class jdRegistrarCarpetaFamiliar extends javax.swing.JDialog {
     /**
      * Objeto conexion
      */
-    Conexion con;
+    //Conexion con;
     /**
      * Obtiene la conexion
      */
@@ -134,8 +134,8 @@ public class jdRegistrarCarpetaFamiliar extends javax.swing.JDialog {
 //            this.parent1=(frmAdministrador)parent;
         fa.getJFormattedTextField().setEditable(true);
         listarSexo();
-        con=new Conexion();
-        conn=con.getConnection();
+//        con=new Conexion();
+//        conn=con.getConnection();
         Configuraciones();
         this.setTitle("Registrar Carpeta Familiar");
         jPanelFechNac.setLayout(new BorderLayout());
@@ -148,7 +148,7 @@ public class jdRegistrarCarpetaFamiliar extends javax.swing.JDialog {
         carf=new CarpetaFamiliar();
         Histc=new HistoriaClinica();
         paci=new Paciente();
-        maxCarpeta();
+//        maxCarpeta();
         FilaJefe=-1;
         RegistroTranslado=new ArrayList();
 //        SumillasDeMotivos=new ArrayList<>();
@@ -2160,9 +2160,9 @@ public class jdRegistrarCarpetaFamiliar extends javax.swing.JDialog {
      * en la base de datos
      * @throws SQLException 
      */
-    public void maxCarpeta() throws SQLException{
-        lbMayorCarpeta.setText(String.valueOf(carf.MayorCarpeta()));
-    }
+////    public void maxCarpeta() throws SQLException{
+////        lbMayorCarpeta.setText(String.valueOf(carf.MayorCarpeta()));
+////    }
     //utilizado cuando cancela la operacion 
      
 

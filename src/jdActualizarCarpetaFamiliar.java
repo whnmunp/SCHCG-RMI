@@ -62,7 +62,7 @@ public class jdActualizarCarpetaFamiliar extends javax.swing.JDialog {
     /**
      * Objeto Conexion
      */
-    Conexion con;
+    //Conexion con;
     /**
      * Obtiene la conexion
      */
@@ -1097,18 +1097,18 @@ public class jdActualizarCarpetaFamiliar extends javax.swing.JDialog {
         else{
             pt.TablaPacientes(jtHistoriasClinicas);
             carpetafamiliar=new CarpetaFamiliar();
-            cf=carpetafamiliar.ConsultarCarpetaFamiliar(codCarpeta);//devuelve un objeto carpeta familiar con todas las historias que le corresponden
-            for(int i=0;i<cf.getHistorias().size();i++){//obtenemos un arraylist de historias clinicas
-                hc=cf.getHistorias().get(i);
-                paciente=hc.getDuenno();//obtenemos el paciente con la historia clinica obtenida
-                if(paciente.isJefeFamilia()){//verificamos si es jefe de familia
-                    FilaJefe=i;//guardamos la fila en la que esta el jefe de familia
-                    idJefe=paciente.getReferencia();//guardamos el codigo del jefe de familia
-                    System.out.println("Referencia: "+idJefe);
-                }
-                Object fila[]={paciente.getDNI(),paciente.getApPat().trim(),paciente.getAptMat().trim(),paciente.getNombre().trim(),paciente.getFecha(),paciente.getDireccion().trim(),paciente.getSexo(),paciente.getPa().getDenominacion().trim(),cf.getCarpetaFamiliar(),hc.getHc()};//cargamos de datos la fila de la tabla
-                ((DefaultTableModel)jtHistoriasClinicas.getModel()).addRow(fila);//añadimos la fila
-            }
+//            cf=carpetafamiliar.ConsultarCarpetaFamiliar(codCarpeta);//devuelve un objeto carpeta familiar con todas las historias que le corresponden
+//            for(int i=0;i<cf.getHistorias().size();i++){//obtenemos un arraylist de historias clinicas
+//                hc=cf.getHistorias().get(i);
+//                paciente=hc.getDuenno();//obtenemos el paciente con la historia clinica obtenida
+//                if(paciente.isJefeFamilia()){//verificamos si es jefe de familia
+//                    FilaJefe=i;//guardamos la fila en la que esta el jefe de familia
+//                    idJefe=paciente.getReferencia();//guardamos el codigo del jefe de familia
+//                    System.out.println("Referencia: "+idJefe);
+//                }
+//                Object fila[]={paciente.getDNI(),paciente.getApPat().trim(),paciente.getAptMat().trim(),paciente.getNombre().trim(),paciente.getFecha(),paciente.getDireccion().trim(),paciente.getSexo(),paciente.getPa().getDenominacion().trim(),cf.getCarpetaFamiliar(),hc.getHc()};//cargamos de datos la fila de la tabla
+//                ((DefaultTableModel)jtHistoriasClinicas.getModel()).addRow(fila);//añadimos la fila
+//            }
             if(DeDonde==0){//si es que viene de una seleccion en la tabla de la interfaz principal
                 txtCarpeta.setText(codCarpeta);
                 //txtCarpeta.setEditable(false);
@@ -1124,10 +1124,10 @@ public class jdActualizarCarpetaFamiliar extends javax.swing.JDialog {
         Parentesco parentesco;
         ArrayList<Parentesco> parentescos;
         parentesco=new Parentesco();
-        parentescos=parentesco.ConsultarParentesco();//nos devuelve un array de parentesco que existan en la base de datos
-        for(int i=0;i<parentescos.size();i++){
-            jcbParentesco.addItem(parentescos.get(i).getDenominacion().trim());//añadimos las opciones al combobox.
-        }
+//        parentescos=parentesco.ConsultarParentesco();//nos devuelve un array de parentesco que existan en la base de datos
+//        for(int i=0;i<parentescos.size();i++){
+//            jcbParentesco.addItem(parentescos.get(i).getDenominacion().trim());//añadimos las opciones al combobox.
+//        }
     }//fin LlenarCombo
     
     /**
