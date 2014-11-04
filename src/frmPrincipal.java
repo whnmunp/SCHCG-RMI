@@ -552,75 +552,49 @@ public class frmPrincipal extends javax.swing.JFrame {
         int resp;
         resp = RealizarBackupMySQL.showOpenDialog(this);
         if (resp == JFileChooser.APPROVE_OPTION) {
-            restoreDB(RealizarBackupMySQL.getSelectedFile().toString());
+            try {
+                InterfazSCHCG metodo = (InterfazSCHCG) registry.lookup("conex");
+                boolean todo_ok = metodo.restoreDB(RealizarBackupMySQL.getSelectedFile().toString());
+                if (todo_ok) {
+                    JOptionPane.showMessageDialog(this, "Informacion", "Restauracion exitosa",
+                            JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error", "Se produjo un error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (RemoteException ex) {
+                Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NotBoundException ex) {
+                Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else if (resp == JFileChooser.CANCEL_OPTION) {
             JOptionPane.showMessageDialog(this, "Ha sido cancelada la generacion de restaurar");
         }
     }//GEN-LAST:event_jmiRestoreActionPerformed
 
     private void jmiBkpBDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiBkpBDActionPerformed
-        GenerarBackupMySQL();
-    }//GEN-LAST:event_jmiBkpBDActionPerformed
-
-    void GenerarBackupMySQL() {
         int resp;
-        Calendar c = Calendar.getInstance();
-        String fecha = String.valueOf(c.get(Calendar.DATE));
-        fecha = fecha + "-" + String.valueOf(c.get(Calendar.MONTH));
-        fecha = fecha + "-" + String.valueOf(c.get(Calendar.YEAR));
-        //String nombre = this.jTextField1.getText();
-        //String pass = this.jTextField2.getText();
-        resp = RealizarBackupMySQL.showSaveDialog(this);//JFileChooser de nombre RealizarBackupMySQL
-        if (resp == JFileChooser.APPROVE_OPTION) {//Si el usuario presiona aceptar; se genera el Backup
+        resp = RealizarBackupMySQL.showOpenDialog(this);
+        if (resp == JFileChooser.APPROVE_OPTION) {
             try {
-                Runtime runtime = Runtime.getRuntime();
-                File backupFile = new File(String.valueOf(RealizarBackupMySQL.getSelectedFile().toString())
-                        + "_" + fecha + ".sql");
-                FileWriter fw = new FileWriter(backupFile);
-                //C:\xampp\mysql\bin
-                Process child = runtime.exec("C:\\xampp\\mysql\\bin\\mysqldump --opt --password= --user=root "
-                        + "--databases  bdschcg2 -R");
-                InputStreamReader irs = new InputStreamReader(child.getInputStream());
-                BufferedReader br = new BufferedReader(irs);
-
-                String line;
-                while ((line = br.readLine()) != null) {
-                    fw.write(line + "\n");
+                InterfazSCHCG metodo = (InterfazSCHCG) registry.lookup("conex");
+                boolean todo_ok = metodo.GenerarBackupMySQL(RealizarBackupMySQL.getSelectedFile().toString());
+                if (todo_ok) {
+                    JOptionPane.showMessageDialog(this, "Informacion", "Archivo generado",
+                            JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Error", "Se produjo un error",
+                            JOptionPane.ERROR_MESSAGE);
                 }
-                fw.close();
-                irs.close();
-                br.close();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Error no se genero el archivo por el siguiente motivo:" + e.getMessage(),
-                        "Verificar", JOptionPane.ERROR_MESSAGE);
+            } catch (RemoteException ex) {
+                Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NotBoundException ex) {
+                Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
-            JOptionPane.showMessageDialog(this, "Archivogenerado",
-                    "Verificar", JOptionPane.INFORMATION_MESSAGE);
         } else if (resp == JFileChooser.CANCEL_OPTION) {
-            JOptionPane.showMessageDialog(this, "Ha sido cancelada la generacion del Backup");
+            JOptionPane.showMessageDialog(this, "Ha sido cancelada la generacion de restaurar");
         }
-    }//GenerarBackupMySQL()
-
-    public void restoreDB(String path) {
-        String executeCmd = "C:/xampp/mysql/bin/mysql -u root bdschcg2 < " + path;
-        //System.out.println(executeCmd);
-
-        Process runtimeProcess;
-
-        try {
-            runtimeProcess = Runtime.getRuntime().exec(new String[]{"cmd.exe", "/c", executeCmd});
-            int processComplete = runtimeProcess.waitFor();
-            //System.out.println(processComplete);
-            if (processComplete == 0) {
-                JOptionPane.showMessageDialog(this, "Restauracion existosa",
-                    "Verificar", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(this,"Couldn't Restore the backup !");
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }//restoreDB(String path)
+    }//GEN-LAST:event_jmiBkpBDActionPerformed
 
     /**
      * Recoge el contenido de los campos correspondientes a la estructura de un
