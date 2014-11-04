@@ -16,6 +16,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -473,7 +475,10 @@ public class frmPrincipal extends javax.swing.JFrame {
                     "  FROM \"Paciente\" as p inner join \"HistoriaClinica\" hc on hc.id=p.id where p.dni like '"+DNI+"%';";
             String res;
             res = rp.consultarPorDNI(query);
-            JOptionPane.showMessageDialog(null, res);
+            JTextArea ta=new JTextArea();
+            JScrollPane spa1=new JScrollPane(ta);
+            ta.append(res);
+            JOptionPane.showMessageDialog(null,spa1);
         } catch (RemoteException ex) {
             Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NotBoundException ex) {
