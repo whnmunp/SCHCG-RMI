@@ -3,17 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
-
-
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.InputStreamReader;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -21,15 +23,19 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  * Formulario principal para el tipo de usuario Digitador
+ *
  * @author Wilson Neira Mija
  * @author Carlos Nole Machaca
  * @version 1.5.2
  */
 public class frmPrincipal extends javax.swing.JFrame {
+
+    JFileChooser RealizarBackupMySQL = new JFileChooser();
+
     /**
      * Tamaño de columnas de la tabla
      */
-    int tamColum[]={8,200,8,8};
+    int tamColum[] = {8, 200, 8, 8};
     /**
      * Objeto PacienteControl
      */
@@ -62,22 +68,22 @@ public class frmPrincipal extends javax.swing.JFrame {
      * Objeto Registry
      */
     Registry registry;
-    
+
     /**
      * Crea la interfaz para el usuario tipo Administrador o digitador
      */
     public frmPrincipal(Registry registry) throws SQLException {
         Apariencia();
         initComponents();
-        this.registry=registry;
+        this.registry = registry;
         Configuraciones();
-        pac=new PacienteControl();
-        cfc=new CarpetaFamiliarControl();
-        hcc=new HistoriaClinicaControl();
-        pt=new PropiedadesTablas();
-        carf=new CarpetaFamiliar();
-        Histc=new HistoriaClinica();
-        paci=new Paciente();
+        pac = new PacienteControl();
+        cfc = new CarpetaFamiliarControl();
+        hcc = new HistoriaClinicaControl();
+        pt = new PropiedadesTablas();
+        carf = new CarpetaFamiliar();
+        Histc = new HistoriaClinica();
+        paci = new Paciente();
         EscribeCantidades();
     }
 
@@ -109,8 +115,8 @@ public class frmPrincipal extends javax.swing.JFrame {
         btnbActualizarCarpeta = new javax.swing.JButton();
         jmbMenuPrincipal = new javax.swing.JMenuBar();
         jmArchivo = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jmiBkpBD = new javax.swing.JMenuItem();
+        jmiRestore = new javax.swing.JMenuItem();
         jmOperaciones = new javax.swing.JMenu();
         jmiRegistrarCarpeta = new javax.swing.JMenuItem();
         jmiActualizarCF = new javax.swing.JMenuItem();
@@ -330,18 +336,23 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jmArchivo.setText("Archivo");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon-backup.png"))); // NOI18N
-        jMenuItem1.setText("Backup BD");
-        jmArchivo.add(jMenuItem1);
-
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon-restore.png"))); // NOI18N
-        jMenuItem2.setText("Restaurar BD");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jmiBkpBD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon-backup.png"))); // NOI18N
+        jmiBkpBD.setText("Backup BD");
+        jmiBkpBD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jmiBkpBDActionPerformed(evt);
             }
         });
-        jmArchivo.add(jMenuItem2);
+        jmArchivo.add(jmiBkpBD);
+
+        jmiRestore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon-restore.png"))); // NOI18N
+        jmiRestore.setText("Restaurar BD");
+        jmiRestore.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiRestoreActionPerformed(evt);
+            }
+        });
+        jmArchivo.add(jmiRestore);
 
         jmbMenuPrincipal.add(jmArchivo);
 
@@ -393,8 +404,9 @@ public class frmPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Muestra la interfaz para realizar un registro
-     * de carpeta familiar desde la barra de menu.
+     * Muestra la interfaz para realizar un registro de carpeta familiar desde
+     * la barra de menu.
+     *
      * @param evt ActionEvent
      */
     private void jmiRegistrarCarpetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRegistrarCarpetaActionPerformed
@@ -406,8 +418,9 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiRegistrarCarpetaActionPerformed
 
     /**
-     * Muestra la interfaz para realizar una actualizacion
-     * de datos de la carpeta familiar desde la barra de menu
+     * Muestra la interfaz para realizar una actualizacion de datos de la
+     * carpeta familiar desde la barra de menu
+     *
      * @param evt ActionEvent
      */
     private void jmiActualizarCarpetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiActualizarCarpetaActionPerformed
@@ -416,15 +429,17 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     /**
      * Valida el tipo de documento
-     * @param evt 
+     *
+     * @param evt
      */
     private void txtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyTyped
         pac.ValidarDNIYCE(txtDNI, evt);
     }//GEN-LAST:event_txtDNIKeyTyped
 
     /**
-     * Muestra la interfaz para realizar un registro
-     * de carpeta familiar desde la barra de Herramientas.
+     * Muestra la interfaz para realizar un registro de carpeta familiar desde
+     * la barra de Herramientas.
+     *
      * @param evt ActionEvent
      */
     private void btnbNuevaCarpetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbNuevaCarpetaActionPerformed
@@ -436,8 +451,9 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnbNuevaCarpetaActionPerformed
 
     /**
-     * Muestra la interfaz para realizar un registro
-     * de carpeta familiar desde un boton.
+     * Muestra la interfaz para realizar un registro de carpeta familiar desde
+     * un boton.
+     *
      * @param evt ActionEvent
      */
     private void btnNuevaCarpetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaCarpetaActionPerformed
@@ -449,8 +465,9 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNuevaCarpetaActionPerformed
 
     /**
-     * Muestra la interfaz para realizar una actualizacion
-     * de datos de la carpeta familiar desde la barra de herramientas
+     * Muestra la interfaz para realizar una actualizacion de datos de la
+     * carpeta familiar desde la barra de herramientas
+     *
      * @param evt ActionEvent
      */
     private void btnbActualizarCarpetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbActualizarCarpetaActionPerformed
@@ -458,8 +475,9 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnbActualizarCarpetaActionPerformed
 
     /**
-     * Muestra la interfaz para realizar una actualizacion
-     * de datos de la carpeta familiar desde un boton
+     * Muestra la interfaz para realizar una actualizacion de datos de la
+     * carpeta familiar desde un boton
+     *
      * @param evt ActionEvent
      */
     private void btnActualizarCarpetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarCarpetaActionPerformed
@@ -467,33 +485,33 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarCarpetaActionPerformed
 
     private void txtDNIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyReleased
-        try {                                   
+        try {
             String DNI;
             InterfazSCHCG rp = (InterfazSCHCG) registry.lookup("conex");
-            DNI=txtDNI.getText();
+            DNI = txtDNI.getText();
             //ConsultarPacientes(DNI,0);
 //            String query="SELECT p.dni, p.\"ApPaterno\", p.\"ApMaterno\", p.\"Nombres\",hc.\"codHistoria\", hc.\"codCarpeta\",hc.\"histAntigua\"\n" +
 //                    "  FROM \"Paciente\" as p inner join \"HistoriaClinica\" hc on hc.id=p.id where p.dni like '"+DNI+"%';";
-            String query="SELECT p.dni, p.ApPaterno, p.ApMaterno, p.Nombres,hc.codHistoria, hc.codCarpeta,hc.histAntigua " +
-                    "  FROM paciente as p inner join historiaclinica hc on hc.id=p.id where p.dni like '"+DNI+"%'";
+            String query = "SELECT p.dni, p.ApPaterno, p.ApMaterno, p.Nombres,hc.codHistoria, hc.codCarpeta,hc.histAntigua "
+                    + "  FROM paciente as p inner join historiaclinica hc on hc.id=p.id where p.dni like '" + DNI + "%'";
             String res;
             res = rp.consultarPorDNI(query);
-            JTextArea ta=new JTextArea(30,50);
-            JScrollPane spa1=new JScrollPane(ta);
+            JTextArea ta = new JTextArea(30, 50);
+            JScrollPane spa1 = new JScrollPane(ta);
             ta.append(res);
-            JOptionPane.showMessageDialog(null,spa1);
+            JOptionPane.showMessageDialog(null, spa1);
         } catch (RemoteException ex) {
             Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NotBoundException ex) {
             Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-          
+
     }//GEN-LAST:event_txtDNIKeyReleased
 
-   
     /**
      * Se habilita la funcion de aádir historia
-     * @param evt 
+     *
+     * @param evt
      */
     private void jtPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtPacientesMouseClicked
 //       HabilitarAñadirHistoria();
@@ -501,7 +519,8 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     /**
      * Cierra la ventana sin terminar el programa
-     * @param evt 
+     *
+     * @param evt
      */
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
 //         CerraSesion();
@@ -509,32 +528,103 @@ public class frmPrincipal extends javax.swing.JFrame {
 
     /**
      * Muestra la interfaz para actualizar número de carpeta familiar
-     * @param evt 
+     *
+     * @param evt
      */
     private void jmiActualizarCFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiActualizarCFActionPerformed
-        new jdActualizarEliminarCarpeta(this,true,1).setVisible(true); 
+        new jdActualizarEliminarCarpeta(this, true, 1).setVisible(true);
     }//GEN-LAST:event_jmiActualizarCFActionPerformed
 
     /**
      * Muestra la interfaz para eliminar carpeta familiar
-     * @param evt 
+     *
+     * @param evt
      */
     private void jmiEliminarCFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiEliminarCFActionPerformed
-        new jdActualizarEliminarCarpeta(this,true,2).setVisible(true);      
+        new jdActualizarEliminarCarpeta(this, true, 2).setVisible(true);
     }//GEN-LAST:event_jmiEliminarCFActionPerformed
 
     private void txtDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDNIActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDNIActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    private void jmiRestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRestoreActionPerformed
+        int resp;
+        resp = RealizarBackupMySQL.showOpenDialog(this);
+        if (resp == JFileChooser.APPROVE_OPTION) {
+            restoreDB(RealizarBackupMySQL.getSelectedFile().toString());
+        } else if (resp == JFileChooser.CANCEL_OPTION) {
+            JOptionPane.showMessageDialog(this, "Ha sido cancelada la generacion de restaurar");
+        }
+    }//GEN-LAST:event_jmiRestoreActionPerformed
+
+    private void jmiBkpBDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiBkpBDActionPerformed
+        GenerarBackupMySQL();
+    }//GEN-LAST:event_jmiBkpBDActionPerformed
+
+    void GenerarBackupMySQL() {
+        int resp;
+        Calendar c = Calendar.getInstance();
+        String fecha = String.valueOf(c.get(Calendar.DATE));
+        fecha = fecha + "-" + String.valueOf(c.get(Calendar.MONTH));
+        fecha = fecha + "-" + String.valueOf(c.get(Calendar.YEAR));
+        //String nombre = this.jTextField1.getText();
+        //String pass = this.jTextField2.getText();
+        resp = RealizarBackupMySQL.showSaveDialog(this);//JFileChooser de nombre RealizarBackupMySQL
+        if (resp == JFileChooser.APPROVE_OPTION) {//Si el usuario presiona aceptar; se genera el Backup
+            try {
+                Runtime runtime = Runtime.getRuntime();
+                File backupFile = new File(String.valueOf(RealizarBackupMySQL.getSelectedFile().toString())
+                        + "_" + fecha + ".sql");
+                FileWriter fw = new FileWriter(backupFile);
+                //C:\xampp\mysql\bin
+                Process child = runtime.exec("C:\\xampp\\mysql\\bin\\mysqldump --opt --password= --user=root "
+                        + "--databases  bdschcg2 -R");
+                InputStreamReader irs = new InputStreamReader(child.getInputStream());
+                BufferedReader br = new BufferedReader(irs);
+
+                String line;
+                while ((line = br.readLine()) != null) {
+                    fw.write(line + "\n");
+                }
+                fw.close();
+                irs.close();
+                br.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error no se genero el archivo por el siguiente motivo:" + e.getMessage(),
+                        "Verificar", JOptionPane.ERROR_MESSAGE);
+            }
+            JOptionPane.showMessageDialog(this, "Archivogenerado",
+                    "Verificar", JOptionPane.INFORMATION_MESSAGE);
+        } else if (resp == JFileChooser.CANCEL_OPTION) {
+            JOptionPane.showMessageDialog(this, "Ha sido cancelada la generacion del Backup");
+        }
+    }//GenerarBackupMySQL()
+
+    public void restoreDB(String path) {
+        String executeCmd = "C:/xampp/mysql/bin/mysql -u root bdschcg2 < " + path;
+        //System.out.println(executeCmd);
+
+        Process runtimeProcess;
+
+        try {
+            runtimeProcess = Runtime.getRuntime().exec(new String[]{"cmd.exe", "/c", executeCmd});
+            int processComplete = runtimeProcess.waitFor();
+            //System.out.println(processComplete);
+            if (processComplete == 0) {
+                JOptionPane.showMessageDialog(this, "Restauracion existosa",
+                    "Verificar", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this,"Couldn't Restore the backup !");
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }//restoreDB(String path)
 
     /**
-     * Recoge el contenido de los campos
-     * correspondientes a la estructura de
-     * un nombre
+     * Recoge el contenido de los campos correspondientes a la estructura de un
+     * nombre
      */
 //    public void Nombres(){
 //        String appat,apmat,nombre;
@@ -543,54 +633,52 @@ public class frmPrincipal extends javax.swing.JFrame {
 //        nombre=txtNombres.getText();
 //        ConsultarPacientes(appat,apmat,nombre);
 //    }
-    
     /**
-     * Consulta a la base de datos y llena la tabla con los 
-     * datos que sean devueltos ante cualquiera de los filtros
-     * como: DNI/CARNET EXT, N° CARPETA, HC NUEVA y HC ANTIGUA
+     * Consulta a la base de datos y llena la tabla con los datos que sean
+     * devueltos ante cualquiera de los filtros como: DNI/CARNET EXT, N°
+     * CARPETA, HC NUEVA y HC ANTIGUA
+     *
      * @param Dato
-     * @param Limpiar 
+     * @param Limpiar
      */
-    public void ConsultarPacientes(String Dato,int Limpiar){
+    public void ConsultarPacientes(String Dato, int Limpiar) {
         Paciente paciente;
         ArrayList<Paciente> pacientes = null;
-        int i,tam;
-        String query = null,query2=null;
+        int i, tam;
+        String query = null, query2 = null;
         //try {
-        tam=Dato.length();
-        if(tam==0){
+        tam = Dato.length();
+        if (tam == 0) {
             pt.TablaPacientes1(jtPacientes);//TablaPacientes();
 //            DeshabilitarAñadirHistoria();
-        }
-        else
-        {
+        } else {
             pt.TablaPacientes1(jtPacientes);//TablaPacientes();
-            paciente=new Paciente();
-            switch(Limpiar){
-            case 0:
+            paciente = new Paciente();
+            switch (Limpiar) {
+                case 0:
 //                limpiarSiDNI();
-                //query="SELECT  p.dni,p.\"ApPaterno\", p.\"ApMaterno\", p.\"Nombres\", hc.\"codCarpeta\",hc.\"codHistoria\" FROM \"HistoriaClinica\" as hc inner join \"Paciente\" as p on hc.dni=p.dni  where hc.dni like '"+Dato+"%';";
-                query="SELECT p.dni, p.\"ApPaterno\", p.\"ApMaterno\", p.\"Nombres\",hc.\"codHistoria\", hc.\"codCarpeta\",hc.\"histAntigua\"\n" +
-                "  FROM \"Paciente\" as p inner join \"HistoriaClinica\" hc on hc.id=p.id where p.dni like '"+Dato+"%';";
-                break;
-            case 1:
-                limpiarSiNumCarpeta();
-                //query="SELECT  p.dni,p.\"ApPaterno\", p.\"ApMaterno\", p.\"Nombres\", hc.\"codCarpeta\",hc.\"codHistoria\" FROM \"HistoriaClinica\" as hc inner join \"Paciente\" as p on hc.dni=p.dni  where hc.\"codCarpeta\" like '"+Dato+"%';";
-                query="SELECT p.dni, p.\"ApPaterno\", p.\"ApMaterno\", p.\"Nombres\",hc.\"codHistoria\", hc.\"codCarpeta\",hc.\"histAntigua\"\n" +
-                "  FROM \"Paciente\" as p inner join \"HistoriaClinica\" hc on hc.id=p.id where hc.\"codCarpeta\"='"+Dato+"';";
-                break;
-            case 2:
-                limpiarSiHistClinica();
-                //query="SELECT  p.dni,p.\"ApPaterno\", p.\"ApMaterno\", p.\"Nombres\", hc.\"codCarpeta\",hc.\"codHistoria\" FROM \"HistoriaClinica\" as hc inner join \"Paciente\" as p on hc.dni=p.dni  where hc.\"codHistoria\" like '"+Dato+"%';";
-                query="SELECT p.dni, p.\"ApPaterno\", p.\"ApMaterno\", p.\"Nombres\",hc.\"codHistoria\", hc.\"codCarpeta\",hc.\"histAntigua\"\n" +
-                "  FROM \"Paciente\" as p inner join \"HistoriaClinica\" hc on hc.id=p.id where hc.\"codHistoria\" like '"+Dato+"%';";
-                break;
-             case 3:
-                limpiarSiHistAnt();
-                //query="SELECT  p.dni,p.\"ApPaterno\", p.\"ApMaterno\", p.\"Nombres\", hc.\"codCarpeta\",hc.\"codHistoria\" FROM \"HistoriaClinica\" as hc inner join \"Paciente\" as p on hc.dni=p.dni  where hc.\"codHistoria\" like '"+Dato+"%';";
-                query="SELECT p.dni, p.\"ApPaterno\", p.\"ApMaterno\", p.\"Nombres\",hc.\"codHistoria\", hc.\"codCarpeta\",hc.\"histAntigua\"\n" +
-                "  FROM \"Paciente\" as p inner join \"HistoriaClinica\" hc on hc.id=p.id where hc.\"histAntigua\" like '"+Dato+"%';";
-                break;   
+                    //query="SELECT  p.dni,p.\"ApPaterno\", p.\"ApMaterno\", p.\"Nombres\", hc.\"codCarpeta\",hc.\"codHistoria\" FROM \"HistoriaClinica\" as hc inner join \"Paciente\" as p on hc.dni=p.dni  where hc.dni like '"+Dato+"%';";
+                    query = "SELECT p.dni, p.\"ApPaterno\", p.\"ApMaterno\", p.\"Nombres\",hc.\"codHistoria\", hc.\"codCarpeta\",hc.\"histAntigua\"\n"
+                            + "  FROM \"Paciente\" as p inner join \"HistoriaClinica\" hc on hc.id=p.id where p.dni like '" + Dato + "%';";
+                    break;
+                case 1:
+                    limpiarSiNumCarpeta();
+                    //query="SELECT  p.dni,p.\"ApPaterno\", p.\"ApMaterno\", p.\"Nombres\", hc.\"codCarpeta\",hc.\"codHistoria\" FROM \"HistoriaClinica\" as hc inner join \"Paciente\" as p on hc.dni=p.dni  where hc.\"codCarpeta\" like '"+Dato+"%';";
+                    query = "SELECT p.dni, p.\"ApPaterno\", p.\"ApMaterno\", p.\"Nombres\",hc.\"codHistoria\", hc.\"codCarpeta\",hc.\"histAntigua\"\n"
+                            + "  FROM \"Paciente\" as p inner join \"HistoriaClinica\" hc on hc.id=p.id where hc.\"codCarpeta\"='" + Dato + "';";
+                    break;
+                case 2:
+                    limpiarSiHistClinica();
+                    //query="SELECT  p.dni,p.\"ApPaterno\", p.\"ApMaterno\", p.\"Nombres\", hc.\"codCarpeta\",hc.\"codHistoria\" FROM \"HistoriaClinica\" as hc inner join \"Paciente\" as p on hc.dni=p.dni  where hc.\"codHistoria\" like '"+Dato+"%';";
+                    query = "SELECT p.dni, p.\"ApPaterno\", p.\"ApMaterno\", p.\"Nombres\",hc.\"codHistoria\", hc.\"codCarpeta\",hc.\"histAntigua\"\n"
+                            + "  FROM \"Paciente\" as p inner join \"HistoriaClinica\" hc on hc.id=p.id where hc.\"codHistoria\" like '" + Dato + "%';";
+                    break;
+                case 3:
+                    limpiarSiHistAnt();
+                    //query="SELECT  p.dni,p.\"ApPaterno\", p.\"ApMaterno\", p.\"Nombres\", hc.\"codCarpeta\",hc.\"codHistoria\" FROM \"HistoriaClinica\" as hc inner join \"Paciente\" as p on hc.dni=p.dni  where hc.\"codHistoria\" like '"+Dato+"%';";
+                    query = "SELECT p.dni, p.\"ApPaterno\", p.\"ApMaterno\", p.\"Nombres\",hc.\"codHistoria\", hc.\"codCarpeta\",hc.\"histAntigua\"\n"
+                            + "  FROM \"Paciente\" as p inner join \"HistoriaClinica\" hc on hc.id=p.id where hc.\"histAntigua\" like '" + Dato + "%';";
+                    break;
             }
             //pacientes=paciente.ConsultarPacientes(query,0);
 //            pacientes=paciente.ConsultarPacientes(query,0);
@@ -605,15 +693,16 @@ public class frmPrincipal extends javax.swing.JFrame {
 //        } catch (SQLException ex) {
 //            Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
 //        }
+        }
     }
-    }     
 
     /**
-     * Consulta a la base de datos y llena la tabla con
-     * los datos que sean devueltos ante el nombre ingresado
+     * Consulta a la base de datos y llena la tabla con los datos que sean
+     * devueltos ante el nombre ingresado
+     *
      * @param appat
      * @param apmat
-     * @param nombre 
+     * @param nombre
      */
 //    public void ConsultarPacientes(String appat,String apmat,String nombre){
 //        Paciente paciente;
@@ -640,19 +729,15 @@ public class frmPrincipal extends javax.swing.JFrame {
 //            Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //    }
-    
-    
-    public void Configuraciones()
-    {
+    public void Configuraciones() {
         //setExtendedState(JFrame.MAXIMIZED_BOTH);
         jpcontenedor.setBorder(new ImagenMDI());
 //        lbNombre.setText(em.getNombre());
 //        lbApellidos.setText(em.getApellidos());
     }
-    
+
     /**
-     * Limpia todos los campos alrededor del
-     * campo dni
+     * Limpia todos los campos alrededor del campo dni
      */
 //    public void limpiarSiDNI(){
 //        txtNumCarpeta.setText("");
@@ -662,12 +747,10 @@ public class frmPrincipal extends javax.swing.JFrame {
 //        txtApeMat.setText("");
 //        txtNombres.setText("");
 //    }
-    
     /**
-     * Limpia todos los campos alrededor del
-     * campo numero de carpeta familiar
+     * Limpia todos los campos alrededor del campo numero de carpeta familiar
      */
-    public void limpiarSiNumCarpeta(){
+    public void limpiarSiNumCarpeta() {
         txtDNI.setText("");
 //        txtHistClinica.setText("");
 //        txtHcAntigua.setText("");
@@ -675,12 +758,11 @@ public class frmPrincipal extends javax.swing.JFrame {
 //        txtApeMat.setText("");
 //        txtNombres.setText("");
     }
-    
+
     /**
-     * Limpia todos los campos alrededor del
-     * campo historia nueva
+     * Limpia todos los campos alrededor del campo historia nueva
      */
-    public void limpiarSiHistClinica(){
+    public void limpiarSiHistClinica() {
 //        txtNumCarpeta.setText("");
         txtDNI.setText("");
 //        txtHcAntigua.setText("");
@@ -688,60 +770,61 @@ public class frmPrincipal extends javax.swing.JFrame {
 //        txtApeMat.setText("");
 //        txtNombres.setText("");
     }
-    
+
     /**
-     * Limpia todos los campos alrededor del
-     * campo historia antigua
+     * Limpia todos los campos alrededor del campo historia antigua
      */
-    public void limpiarSiHistAnt(){
-  //      txtNumCarpeta.setText("");
+    public void limpiarSiHistAnt() {
+        //      txtNumCarpeta.setText("");
         txtDNI.setText("");
-  //      txtApePar.setText("");
-  //      txtApeMat.setText("");
-  //      txtNombres.setText("");
-  //      txtHistClinica.setText("");
+        //      txtApePar.setText("");
+        //      txtApeMat.setText("");
+        //      txtNombres.setText("");
+        //      txtHistClinica.setText("");
     }
-    
+
     /**
-     * Limpia todos los campos alrededor de 
-     * los campos correspondientes a la estructura de
-     * un nombre completo
+     * Limpia todos los campos alrededor de los campos correspondientes a la
+     * estructura de un nombre completo
      */
-    public void limpiarSiApeNombres(){
+    public void limpiarSiApeNombres() {
 //        txtNumCarpeta.setText("");
 //        txtHistClinica.setText("");
         txtDNI.setText("");
 //        txtHcAntigua.setText("");
     }
-    
+
     /**
-     * Utilizado en todas las partes donde se desea
-     * mostrar la interfaz Registrar carpeta familiar
-     * @throws SQLException 
+     * Utilizado en todas las partes donde se desea mostrar la interfaz
+     * Registrar carpeta familiar
+     *
+     * @throws SQLException
      */
-    public void AbriJdRegistrarCarpetaFamiliar() throws SQLException{
-        jdRegistrarCarpetaFamiliar jdrcf=new jdRegistrarCarpetaFamiliar(this,false,0);
+    public void AbriJdRegistrarCarpetaFamiliar() throws SQLException {
+        jdRegistrarCarpetaFamiliar jdrcf = new jdRegistrarCarpetaFamiliar(this, false, 0);
         jdrcf.setVisible(true);
     }
-    
+
     /**
-     * Ayuda a mostrar la interfaz actualizar datos
-     * de la carpeta familiar
+     * Ayuda a mostrar la interfaz actualizar datos de la carpeta familiar
+     *
      * @param codCarpeta numero de carpeta familiar
      * @param DeDonde desde que interfaz se a llamado
-     * @throws SQLException 
+     * @throws SQLException
      */
-    public void AbriJdActualizarCarpetaFamiliar(String codCarpeta,int DeDonde) throws SQLException{
-        jdActualizarCarpetaFamiliar jdacf=new jdActualizarCarpetaFamiliar(this,false);
-        if(DeDonde==0)
-            jdacf.CompletarDatos(codCarpeta,0);
+    public void AbriJdActualizarCarpetaFamiliar(String codCarpeta, int DeDonde) throws SQLException {
+        jdActualizarCarpetaFamiliar jdacf = new jdActualizarCarpetaFamiliar(this, false);
+        if (DeDonde == 0) {
+            jdacf.CompletarDatos(codCarpeta, 0);
+        }
         jdacf.setVisible(true);
     }
-    
+
     /**
-     * Se utiliza en todas las partes donde se 
-     * abrira la interfaz añadir historia
-     * @throws SQLException 
+     * Se utiliza en todas las partes donde se abrira la interfaz añadir
+     * historia
+     *
+     * @throws SQLException
      */
 //    public void AbriJdAñadirHistoriaClinica() throws SQLException{
 //        int fila;
@@ -763,48 +846,43 @@ public class frmPrincipal extends javax.swing.JFrame {
 //        }
 //        
 //    }
-    
-    
     /**
-     * Se utiliza en todas las partes donde se abrira
-     * la interfaz actualizar datos de carpeta familiar
+     * Se utiliza en todas las partes donde se abrira la interfaz actualizar
+     * datos de carpeta familiar
      */
-    public void ActualizarGeneral(){
+    public void ActualizarGeneral() {
         int fila;
         String codCarpeta;
-        try{
-            fila=jtPacientes.getSelectedRow();
-            if(fila!=-1){
-                codCarpeta=((DefaultTableModel)jtPacientes.getModel()).getValueAt(fila,2).toString();
-                AbriJdActualizarCarpetaFamiliar(codCarpeta,0);
+        try {
+            fila = jtPacientes.getSelectedRow();
+            if (fila != -1) {
+                codCarpeta = ((DefaultTableModel) jtPacientes.getModel()).getValueAt(fila, 2).toString();
+                AbriJdActualizarCarpetaFamiliar(codCarpeta, 0);
+            } else {
+                AbriJdActualizarCarpetaFamiliar("", 1);
             }
-            else{
-                AbriJdActualizarCarpetaFamiliar("",1);
-            }
-        }
-        catch(SQLException ex){
-             Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
-     * Actualiza los indicadores para saber cuantas carpetas
-     * familiares van registrandose o cuantos pacientes van }
-     * registrandose
-     * @throws SQLException 
+     * Actualiza los indicadores para saber cuantas carpetas familiares van
+     * registrandose o cuantos pacientes van } registrandose
+     *
+     * @throws SQLException
      */
-    public void EscribeCantidades() throws SQLException{
+    public void EscribeCantidades() throws SQLException {
 //        lbCantCarpetas.setText(String.valueOf(carf.CantidadCarpetas()));
 //        lbCantHist.setText(String.valueOf(Histc.CantidadHistorias()));
 //        lbCantPacientes.setText(String.valueOf(paci.CantidadPacientes()));
     }
-    
+
     /**
-     * Ayuda a la interfaz para que tenga
-     * la apariencia de Nimbus
+     * Ayuda a la interfaz para que tenga la apariencia de Nimbus
      */
-    public void Apariencia(){
-         try {
+    public void Apariencia() {
+        try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -821,10 +899,9 @@ public class frmPrincipal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(frmPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }
-    
+
     /**
-     * Cierra la interfaz principal y muestra
-     * nuevamente la interfaz de loguin
+     * Cierra la interfaz principal y muestra nuevamente la interfaz de loguin
      */
 //    public void CerraSesion(){
 //        int resp;
@@ -835,7 +912,6 @@ public class frmPrincipal extends javax.swing.JFrame {
 //            dispose();
 //        }
 //    }
-    
 //    public static void main(String args[]) {
 //        java.awt.EventQueue.invokeLater(new Runnable() {        
 //            public void run() {                
@@ -854,8 +930,6 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnbActualizarCarpeta;
     private javax.swing.JButton btnbNuevaCarpeta;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
@@ -864,8 +938,10 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jmbMenuPrincipal;
     private javax.swing.JMenuItem jmiActualizarCF;
     private javax.swing.JMenuItem jmiActualizarCarpeta;
+    private javax.swing.JMenuItem jmiBkpBD;
     private javax.swing.JMenuItem jmiEliminarCF;
     private javax.swing.JMenuItem jmiRegistrarCarpeta;
+    private javax.swing.JMenuItem jmiRestore;
     private javax.swing.JPanel jpFiltros;
     private javax.swing.JPanel jpResultados;
     private javax.swing.JPanel jpcontenedor;
