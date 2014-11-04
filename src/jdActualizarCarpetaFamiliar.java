@@ -149,11 +149,8 @@ public class jdActualizarCarpetaFamiliar extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Actualizar Carpeta Familiar");
 
-        jpContenedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         jpDatosGenerales.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Generales"));
         jpDatosGenerales.setOpaque(false);
-        jpDatosGenerales.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtDNI.setEditable(false);
         txtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -161,10 +158,8 @@ public class jdActualizarCarpetaFamiliar extends javax.swing.JDialog {
                 txtDNIKeyTyped(evt);
             }
         });
-        jpDatosGenerales.add(txtDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 100, -1));
 
         lbApePat.setText("Apellidos Paterno: ");
-        jpDatosGenerales.add(lbApePat, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
 
         txtApePar.setEditable(false);
         txtApePar.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -175,10 +170,8 @@ public class jdActualizarCarpetaFamiliar extends javax.swing.JDialog {
                 txtApeParKeyTyped(evt);
             }
         });
-        jpDatosGenerales.add(txtApePar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, 110, -1));
 
         lbApeMat.setText("Apellidos Materno:");
-        jpDatosGenerales.add(lbApeMat, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, -1, -1));
 
         txtApeMat.setEditable(false);
         txtApeMat.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -189,10 +182,8 @@ public class jdActualizarCarpetaFamiliar extends javax.swing.JDialog {
                 txtApeMatKeyTyped(evt);
             }
         });
-        jpDatosGenerales.add(txtApeMat, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 100, -1));
 
         lbNombres.setText("Nombres:");
-        jpDatosGenerales.add(lbNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, -1, -1));
 
         txtNombres.setEditable(false);
         txtNombres.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -203,10 +194,8 @@ public class jdActualizarCarpetaFamiliar extends javax.swing.JDialog {
                 txtNombresKeyTyped(evt);
             }
         });
-        jpDatosGenerales.add(txtNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 70, 220, -1));
 
         lbFechaNacimiento.setText("Fecha Nacimiento:");
-        jpDatosGenerales.add(lbFechaNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
         javax.swing.GroupLayout jpFechaLayout = new javax.swing.GroupLayout(jpFecha);
         jpFecha.setLayout(jpFechaLayout);
@@ -219,10 +208,7 @@ public class jdActualizarCarpetaFamiliar extends javax.swing.JDialog {
             .addGap(0, 34, Short.MAX_VALUE)
         );
 
-        jpDatosGenerales.add(jpFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 190, -1));
-
         lbSexo.setText("Sexo:");
-        jpDatosGenerales.add(lbSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 120, -1, -1));
 
         jcbSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MASCULINO", "FEMENINO" }));
         jcbSexo.addItemListener(new java.awt.event.ItemListener() {
@@ -230,17 +216,14 @@ public class jdActualizarCarpetaFamiliar extends javax.swing.JDialog {
                 jcbSexoItemStateChanged(evt);
             }
         });
-        jpDatosGenerales.add(jcbSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 120, 120, -1));
 
         lbParentesco.setText("Parentesco:");
-        jpDatosGenerales.add(lbParentesco, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, -1, -1));
 
         jcbParentesco.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jcbParentescoItemStateChanged(evt);
             }
         });
-        jpDatosGenerales.add(jcbParentesco, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 120, 170, -1));
 
         btnModificar.setBackground(new java.awt.Color(255, 255, 153));
         btnModificar.setForeground(new java.awt.Color(0, 0, 255));
@@ -252,7 +235,6 @@ public class jdActualizarCarpetaFamiliar extends javax.swing.JDialog {
                 btnModificarActionPerformed(evt);
             }
         });
-        jpDatosGenerales.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 160, 120, -1));
 
         btnCancelar.setBackground(new java.awt.Color(255, 255, 153));
         btnCancelar.setForeground(new java.awt.Color(0, 0, 255));
@@ -263,15 +245,12 @@ public class jdActualizarCarpetaFamiliar extends javax.swing.JDialog {
                 btnCancelarActionPerformed(evt);
             }
         });
-        jpDatosGenerales.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 160, 110, -1));
 
         jcheckBoxJefeCarpeta.setText("Jefe de Familia");
         jcheckBoxJefeCarpeta.setEnabled(false);
         jcheckBoxJefeCarpeta.setFocusCycleRoot(true);
-        jpDatosGenerales.add(jcheckBoxJefeCarpeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 110, -1));
 
         lbDireccion.setText("Direccion:");
-        jpDatosGenerales.add(lbDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, 70, -1));
 
         txtDireccion.setEditable(false);
         txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -279,15 +258,100 @@ public class jdActualizarCarpetaFamiliar extends javax.swing.JDialog {
                 txtDireccionKeyReleased(evt);
             }
         });
-        jpDatosGenerales.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, 270, -1));
 
         jLabel6.setText("CARNET EXT.:");
-        jpDatosGenerales.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
 
         lbDNI1.setText("DNI/");
-        jpDatosGenerales.add(lbDNI1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
 
-        jpContenedor.add(jpDatosGenerales, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 870, 210));
+        javax.swing.GroupLayout jpDatosGeneralesLayout = new javax.swing.GroupLayout(jpDatosGenerales);
+        jpDatosGenerales.setLayout(jpDatosGeneralesLayout);
+        jpDatosGeneralesLayout.setHorizontalGroup(
+            jpDatosGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpDatosGeneralesLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(jpDatosGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbDNI1)
+                    .addComponent(jLabel6))
+                .addGap(31, 31, 31)
+                .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(jcheckBoxJefeCarpeta, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(lbDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jpDatosGeneralesLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(lbApePat)
+                .addGap(10, 10, 10)
+                .addComponent(txtApePar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(lbApeMat)
+                .addGap(11, 11, 11)
+                .addComponent(txtApeMat, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(lbNombres)
+                .addGap(14, 14, 14)
+                .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jpDatosGeneralesLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(lbFechaNacimiento)
+                .addGap(22, 22, 22)
+                .addComponent(jpFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(lbParentesco)
+                .addGap(12, 12, 12)
+                .addComponent(jcbParentesco, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(lbSexo)
+                .addGap(12, 12, 12)
+                .addComponent(jcbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jpDatosGeneralesLayout.createSequentialGroup()
+                .addGap(564, 564, 564)
+                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jpDatosGeneralesLayout.setVerticalGroup(
+            jpDatosGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpDatosGeneralesLayout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addGroup(jpDatosGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpDatosGeneralesLayout.createSequentialGroup()
+                        .addComponent(lbDNI1)
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel6))
+                    .addGroup(jpDatosGeneralesLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jpDatosGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jcheckBoxJefeCarpeta)
+                            .addComponent(lbDireccion)
+                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(16, 16, 16)
+                .addGroup(jpDatosGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbApePat)
+                    .addComponent(txtApePar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbApeMat)
+                    .addComponent(txtApeMat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbNombres)
+                    .addComponent(txtNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jpDatosGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpDatosGeneralesLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jpDatosGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbFechaNacimiento)
+                            .addComponent(lbParentesco)
+                            .addComponent(jcbParentesco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbSexo)
+                            .addComponent(jcbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(16, 16, 16)
+                .addGroup(jpDatosGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnModificar)
+                    .addComponent(btnCancelar)))
+        );
 
         jpHistoriasClinicas.setBorder(javax.swing.BorderFactory.createTitledBorder("Historias Clinicas"));
         jpHistoriasClinicas.setOpaque(false);
@@ -332,10 +396,7 @@ public class jdActualizarCarpetaFamiliar extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jpContenedor.add(jpHistoriasClinicas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 1150, 240));
-
         lbNCarpeta1.setText("N° Carpeta");
-        jpContenedor.add(lbNCarpeta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, -1));
 
         txtCarpeta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -345,11 +406,9 @@ public class jdActualizarCarpetaFamiliar extends javax.swing.JDialog {
                 txtCarpetaKeyTyped(evt);
             }
         });
-        jpContenedor.add(txtCarpeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 80, -1));
 
         lbGuion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lbGuion.setText("-");
-        jpContenedor.add(lbGuion, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 40, 10, -1));
 
         txtHistoria.setEditable(false);
         txtHistoria.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -357,10 +416,49 @@ public class jdActualizarCarpetaFamiliar extends javax.swing.JDialog {
                 txtHistoriaKeyReleased(evt);
             }
         });
-        jpContenedor.add(txtHistoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 40, 90, -1));
 
         lbNCarpeta2.setText(" Historia Clinica");
-        jpContenedor.add(lbNCarpeta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 90, -1));
+
+        javax.swing.GroupLayout jpContenedorLayout = new javax.swing.GroupLayout(jpContenedor);
+        jpContenedor.setLayout(jpContenedorLayout);
+        jpContenedorLayout.setHorizontalGroup(
+            jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpContenedorLayout.createSequentialGroup()
+                .addGap(410, 410, 410)
+                .addComponent(lbNCarpeta1)
+                .addGap(116, 116, 116)
+                .addComponent(lbNCarpeta2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jpContenedorLayout.createSequentialGroup()
+                .addGap(400, 400, 400)
+                .addComponent(txtCarpeta, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(lbGuion, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(txtHistoria, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jpContenedorLayout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(jpDatosGenerales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jpContenedorLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jpHistoriasClinicas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jpContenedorLayout.setVerticalGroup(
+            jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpContenedorLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbNCarpeta1)
+                    .addComponent(lbNCarpeta2))
+                .addGap(6, 6, 6)
+                .addGroup(jpContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCarpeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbGuion)
+                    .addComponent(txtHistoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jpDatosGenerales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jpHistoriasClinicas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -368,14 +466,14 @@ public class jdActualizarCarpetaFamiliar extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 1180, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpContenedor, javax.swing.GroupLayout.DEFAULT_SIZE, 1180, Short.MAX_VALUE))
+                .addComponent(jpContenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 579, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(jpContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpContenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 

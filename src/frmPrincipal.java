@@ -130,14 +130,11 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         jpcontenedor.setName(""); // NOI18N
         jpcontenedor.setPreferredSize(new java.awt.Dimension(480, 329));
-        jpcontenedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jpFiltros.setBorder(javax.swing.BorderFactory.createTitledBorder("Opciones de Busqueda"));
         jpFiltros.setOpaque(false);
-        jpFiltros.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbDNI.setText("DNI/");
-        jpFiltros.add(lbDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         txtDNI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,12 +149,32 @@ public class frmPrincipal extends javax.swing.JFrame {
                 txtDNIKeyTyped(evt);
             }
         });
-        jpFiltros.add(txtDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 105, -1));
 
         jLabel6.setText("CARNET EXT.:");
-        jpFiltros.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
-        jpcontenedor.add(jpFiltros, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 820, 140));
+        javax.swing.GroupLayout jpFiltrosLayout = new javax.swing.GroupLayout(jpFiltros);
+        jpFiltros.setLayout(jpFiltrosLayout);
+        jpFiltrosLayout.setHorizontalGroup(
+            jpFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpFiltrosLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jpFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbDNI)
+                    .addComponent(jLabel6))
+                .addGap(11, 11, 11)
+                .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jpFiltrosLayout.setVerticalGroup(
+            jpFiltrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpFiltrosLayout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addComponent(lbDNI)
+                .addGap(6, 6, 6)
+                .addComponent(jLabel6))
+            .addGroup(jpFiltrosLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(txtDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         jpResultados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jpResultados.setOpaque(false);
@@ -203,11 +220,8 @@ public class frmPrincipal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jpcontenedor.add(jpResultados, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 1080, -1));
-
         lbTituloSistema.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbTituloSistema.setText("SISTEMA DE CONSULTAS DE HISTORIAS CLINICAS");
-        jpcontenedor.add(lbTituloSistema, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, -1, -1));
 
         btnNuevaCarpeta.setBackground(new java.awt.Color(255, 255, 153));
         btnNuevaCarpeta.setForeground(new java.awt.Color(0, 0, 255));
@@ -218,7 +232,6 @@ public class frmPrincipal extends javax.swing.JFrame {
                 btnNuevaCarpetaActionPerformed(evt);
             }
         });
-        jpcontenedor.add(btnNuevaCarpeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, 160, -1));
 
         btnActualizarCarpeta.setBackground(new java.awt.Color(255, 255, 153));
         btnActualizarCarpeta.setForeground(new java.awt.Color(0, 0, 255));
@@ -229,12 +242,57 @@ public class frmPrincipal extends javax.swing.JFrame {
                 btnActualizarCarpetaActionPerformed(evt);
             }
         });
-        jpcontenedor.add(btnActualizarCarpeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 530, 160, -1));
 
         lbUsuario.setText("USUARIO:");
-        jpcontenedor.add(lbUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
-        jpcontenedor.add(lbNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 190, 20));
-        jpcontenedor.add(lbApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 190, 20));
+
+        javax.swing.GroupLayout jpcontenedorLayout = new javax.swing.GroupLayout(jpcontenedor);
+        jpcontenedor.setLayout(jpcontenedorLayout);
+        jpcontenedorLayout.setHorizontalGroup(
+            jpcontenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpcontenedorLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(lbUsuario))
+            .addGroup(jpcontenedorLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(lbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(200, 200, 200)
+                .addComponent(lbTituloSistema))
+            .addGroup(jpcontenedorLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(lbApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(jpFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jpcontenedorLayout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(jpResultados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jpcontenedorLayout.createSequentialGroup()
+                .addGap(410, 410, 410)
+                .addComponent(btnNuevaCarpeta, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(190, 190, 190)
+                .addComponent(btnActualizarCarpeta, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jpcontenedorLayout.setVerticalGroup(
+            jpcontenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpcontenedorLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(lbUsuario)
+                .addGap(6, 6, 6)
+                .addGroup(jpcontenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbTituloSistema))
+                .addGap(8, 8, 8)
+                .addGroup(jpcontenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpcontenedorLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jpFiltros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20)
+                .addComponent(jpResultados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(jpcontenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnNuevaCarpeta)
+                    .addComponent(btnActualizarCarpeta)))
+        );
 
         getContentPane().add(jpcontenedor, java.awt.BorderLayout.CENTER);
 
