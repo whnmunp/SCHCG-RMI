@@ -133,7 +133,7 @@ public class jdServidorRMI extends javax.swing.JDialog {
             bd.setVisible(true);
         } catch (RemoteException ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Fallo Conexion","Servidor de Aplicaciones",1);
+            JOptionPane.showMessageDialog(this,"Fallo Conexion","Servidor de Aplicaciones",1);
         }
     }//GEN-LAST:event_btnConectarActionPerformed
 
@@ -145,7 +145,7 @@ public class jdServidorRMI extends javax.swing.JDialog {
             btnConectar.setEnabled(true);
         } catch (NoSuchObjectException ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Usuario no se pudo desconectar","Servidor de Aplicaciones",1);
+            JOptionPane.showMessageDialog(this,"Usuario no se pudo desconectar","Servidor de Aplicaciones",1);
         }
     }//GEN-LAST:event_btnDesconectarActionPerformed
 
