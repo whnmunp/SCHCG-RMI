@@ -53,31 +53,6 @@ public class ConexionSCHCG extends UnicastRemoteObject implements InterfazSCHCG 
                 return respuesta;
     }
 
-
-    public String EjecutarQuery(String query) throws RemoteException {
-        String respuesta = "";
-        try {
-            Statement stmt = con.createStatement();
-
-            ResultSet rs = stmt.executeQuery(query);
-
-            int numCols = rs.getMetaData().getColumnCount();
-            while (rs.next()) {
-                for (int i = 1; i <= numCols; i++) {
-                    respuesta += (rs.getString(i) + "\t");
-                }
-                respuesta += "\n";
-            }
-
-            rs.close();
-            stmt.close();
-            con.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return respuesta;
-    }
-
     @Override
     public boolean GenerarBackupMySQL(String path) {
 //        int resp;
