@@ -4,13 +4,12 @@ import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Calendar;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -30,29 +29,30 @@ public class ConexionSCHCG extends UnicastRemoteObject implements InterfazSCHCG 
     }
 
     @Override
-    public String consultarPorDNI(String query) throws RemoteException {
-        String respuesta = "";
-        try {
-            Statement stmt = con.createStatement();
-
-            ResultSet rs = stmt.executeQuery(query);
-
-            int numCols = rs.getMetaData().getColumnCount();
-            while (rs.next()) {
-                for (int i = 1; i <= numCols; i++) {
-                    respuesta += (rs.getString(i) + "\t");
+    public String consultarPorDNI(String query,String DNI) throws RemoteException {
+        String respuesta=" ";
+            try{
+                CallableStatement proc = con.prepareCall(query);//preparamos el procedimiento almacenado
+                //se cargan los parametros de entrada del metodo
+                proc.setString(1, DNI);//
+                ResultSet rs=proc.executeQuery(); //ejecuto el procedimiento y recibo el resultado en el resultSet                   
+            	int numCols = rs.getMetaData().getColumnCount ();//obtengo el numero de filas
+                while ( rs.next() ) {
+		  for (int i=1; i<=numCols; i++) {
+                    respuesta+=(rs.getString(i) + "\t" );//leemos cada tupla y las vamos concatenado en una cadena
+                  }  
+                  respuesta+="\n";
                 }
-                respuesta += "\n";
+            	rs.close();
+            	proc.close();
             }
-
-            rs.close();
-            stmt.close();
-            con.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return respuesta;
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            } 
+                return respuesta;
     }
+
 
     public String EjecutarQuery(String query) throws RemoteException {
         String respuesta = "";
