@@ -485,27 +485,39 @@ public class frmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarCarpetaActionPerformed
 
     private void txtDNIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyReleased
-        try {
+       try {
             String DNI;
-            InterfazSCHCG rp = (InterfazSCHCG) registry.lookup("conex");
-            DNI = txtDNI.getText();
-            //ConsultarPacientes(DNI,0);
-//            String query="SELECT p.dni, p.\"ApPaterno\", p.\"ApMaterno\", p.\"Nombres\",hc.\"codHistoria\", hc.\"codCarpeta\",hc.\"histAntigua\"\n" +
-//                    "  FROM \"Paciente\" as p inner join \"HistoriaClinica\" hc on hc.id=p.id where p.dni like '"+DNI+"%';";
-            String query = "SELECT p.dni, p.ApPaterno, p.ApMaterno, p.Nombres,hc.codHistoria, hc.codCarpeta,hc.histAntigua "
-                    + "  FROM paciente as p inner join historiaclinica hc on hc.id=p.id where p.dni like '" + DNI + "%'";
-            String res;
-            res = rp.consultarPorDNI(query);
-            JTextArea ta = new JTextArea(30, 50);
-            JScrollPane spa1 = new JScrollPane(ta);
-            ta.append(res);
-            JOptionPane.showMessageDialog(this, spa1);
+            String filas[];//guardara las filas que devuelve la consulta
+            String DatoFila[];//obtenemos el dato de cada fila
+            DNI = txtDNI.getText();//recupero el valor del dni
+            String res;//AQUI NOS DEVOLVERA EL RESULTADO DE LA CONSULTA
+            int tam;//almacena el tamaño del dni
+            tam=DNI.length();//es el dato ingresado en DNI
+            pt.TablaPacientes1(jtPacientes);
+            if(tam>=1){
+                InterfazSCHCG rp = (InterfazSCHCG) registry.lookup("conex");//obtengo el registro RMI
+                String query="CALL usp_ConsultarDNI(?)";//esta es la consulta para el procedimiento almacenado
+                res = rp.consultarPorDNI(query, DNI);
+                if(!res.equals(" ")){
+                    filas=res.split("\n");
+                    for (String fila : filas) {
+                        DatoFila = fila.split("\t");
+                        ((DefaultTableModel)jtPacientes.getModel()).addRow(DatoFila);
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(this,"No se encontraron Pacientes con esos datos");
+                }
+            }
+//            JTextArea ta = new JTextArea(30, 50);
+//            JScrollPane spa1 = new JScrollPane(ta);
+//            ta.append(res);
+//            JOptionPane.showMessageDialog(this,spa1);
         } catch (RemoteException ex) {
             Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NotBoundException ex) {
             Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }//GEN-LAST:event_txtDNIKeyReleased
 
     /**
