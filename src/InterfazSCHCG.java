@@ -17,7 +17,7 @@ public interface InterfazSCHCG extends Remote {
     public void Conectar(String host, String BD, String User, String Password,
             String dbms) throws RemoteException;
 
-    public String consultarPorDNI(String query) throws RemoteException;
+    public String consultarPorDNI(String query,String DNI) throws RemoteException;
 
     public boolean GenerarBackupMySQL(String path)throws RemoteException;
     
